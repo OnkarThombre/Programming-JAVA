@@ -16,6 +16,5 @@ public class Main
 		
 // 		static private int x = 10;   // if we create private though it is static but it is private so not accessible
 // 		System.out.println(Demo.x);  // x has private access in Demo
-		
 	}
 }
