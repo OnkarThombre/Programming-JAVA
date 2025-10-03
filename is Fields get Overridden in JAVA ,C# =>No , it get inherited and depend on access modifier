@@ -1,0 +1,77 @@
+### **1. Fields vs Methods**
+
+* **Methods** in Java and C# can be **overridden** in a subclass.
+* **Fields (variables)** **cannot be overridden**.
+
+> In other words: fields are **hidden**, not overridden.
+
+---
+
+### **2. Field Hiding**
+
+If a subclass defines a field with the **same name** as a field in its superclass, the subclass field **hides** the superclass field.
+
+**Example in Java:**
+
+```java
+class Parent {
+    public int x = 10;
+}
+
+class Child extends Parent {
+    public int x = 20; // hides Parent's x
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Parent p = new Child();
+        System.out.println(p.x); // 10 → field accessed by reference type
+        Child c = new Child();
+        System.out.println(c.x); // 20 → child field
+    }
+}
+```
+
+**Explanation:**
+
+* `p.x` → accesses **Parent’s field** because field access depends on **reference type**, not runtime object.
+* `c.x` → accesses **Child’s field**.
+
+> Unlike methods, fields **do not use runtime polymorphism**.
+
+---
+
+### **3. In C#**
+
+* Same rules as Java.
+* Fields cannot be overridden; they can be **hidden using `new` keyword**.
+
+**Example in C#:**
+
+```csharp
+class Parent {
+    public int x = 10;
+}
+
+class Child : Parent {
+    public new int x = 20; // hides Parent's x
+}
+
+class Program {
+    static void Main() {
+        Parent p = new Child();
+        Console.WriteLine(p.x); // 10
+        Child c = new Child();
+        Console.WriteLine(c.x); // 20
+    }
+}
+```
+
+---
+
+### ✅ **Key Takeaways**
+
+1. **Fields cannot be overridden**, only hidden.
+2. Field access is determined by **reference type**, not object type.
+3. Methods can be **overridden** and use **runtime polymorphism**.
+
