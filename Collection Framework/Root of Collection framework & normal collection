@@ -1,0 +1,80 @@
+
+---
+
+# 🧩 **QUESTION ANALYSIS**
+
+**“Which is the root of the Collection Framework?”**
+
+Many students get confused because:
+
+* *Collection Framework* ≠ *Collection interface*
+* Map does NOT extend Collection
+* Iterable is also involved at the top
+
+So let’s break it properly.
+
+---
+
+# ✅ **CORRECT ANSWER**
+
+### 💥 **Iterable is the root interface of the Java Collection Framework.**
+
+(Except Map hierarchy, which is separate)
+
+---
+
+# 🧠 **WHY? (Explanation)**
+
+The hierarchy looks like this:
+
+```
+Iterable  ← root of collection hierarchy
+   ↑
+Collection
+   ↑
+List, Set, Queue
+```
+
+### ✔ **Iterable**
+
+* Is the **top-most interface**
+* Provides the ability to use **foreach loops**
+* Every Collection class must implement Iterable
+
+### ✔ **Collection**
+
+* Is the **root interface of the Collection hierarchy**, not the entire framework
+* Child interfaces: List, Set, Queue
+
+### ✔ **Map**
+
+* Part of the Collection *Framework*
+* BUT not part of **Collection hierarchy**
+* Does NOT extend Collection or Iterable
+
+---
+
+# 🧩 **FINAL INTERVIEW ANSWER**
+
+### ⭐ **BEST ANSWER:**
+
+> “The root interface of the Java Collection Framework is **Iterable**.
+> The root interface of the *Collection hierarchy* is **Collection**.
+> Map is also part of the framework but it does not extend Collection.”
+
+---
+
+# 🏆 **If interviewer asks only ‘root of Collection Framework’**
+
+Say:
+
+> **Iterable is the root of the Collection Framework.**
+
+# 🏆 **If interviewer asks ‘root of Collection interface hierarchy’**
+
+Say:
+
+> **Collection is the root of the Collection hierarchy.**
+
+---
+
