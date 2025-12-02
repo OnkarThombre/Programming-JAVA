@@ -1,0 +1,94 @@
+
+---
+
+# 🧩 **1️⃣ COLLECTION (java.util.Collection)**
+
+### ✔ **It is an INTERFACE**
+
+```java
+public interface Collection<E>
+```
+
+### ✔ Part of the **Collection Framework**
+
+### ✔ It is the **root interface** for:
+
+* List
+* Set
+* Queue
+
+### ✔ It defines **basic operations**:
+
+* add()
+* remove()
+* size()
+* contains()
+* iterator()
+
+### ✔ EXAMPLE:
+
+```java
+Collection<String> list = new ArrayList<>();
+list.add("A");
+```
+
+---
+
+# 🧩 **2️⃣ COLLECTIONS (java.util.Collections)**
+
+### ✔ **It is a UTILITY CLASS**
+
+```java
+public class Collections
+```
+
+### ✔ This class contains **STATIC methods** (helper methods) to operate on collections.
+
+### ✔ Some important methods:
+
+* `sort(list)`
+* `reverse(list)`
+* `shuffle(list)`
+* `max(list)`
+* `min(list)`
+* `frequency(list)`
+* `binarySearch(list)`
+* `synchronizedList(list)`
+
+### ✔ EXAMPLE:
+
+```java
+List<Integer> list = Arrays.asList(10, 2, 50);
+Collections.sort(list);  // sort using utility class
+```
+
+---
+
+# 🎯 **INTERVIEW-READY DIFFERENCE TABLE**
+
+| Feature     | **Collection**                              | **Collections**                 |
+| ----------- | ------------------------------------------- | ------------------------------- |
+| Type        | INTERFACE                                   | CLASS                           |
+| Package     | java.util                                   | java.util                       |
+| Purpose     | Defines core methods for collections        | Provides utility/helper methods |
+| Contains    | No methods with implementations             | Only static methods             |
+| Inheritance | Parent of List, Set, Queue                  | No inheritance, a helper class  |
+| Example     | `Collection<String> c = new ArrayList<>();` | `Collections.sort(list);`       |
+
+---
+
+# 🗣️ **Perfect Interview Answer**
+
+> “Collection is an interface that defines the core methods for working with groups of objects, like add, remove, size.
+> Collections is a utility class that provides static methods such as sort, reverse, max, min to work on objects of Collection types.
+> Collection is a root interface, Collections is just a helper class.”
+
+---
+
+If you want, I can also explain:
+✔ **List vs Set**
+✔ **ArrayList vs LinkedList**
+✔ **HashMap vs LinkedHashMap vs TreeMap**
+✔ **HashSet vs TreeSet**
+
+Just say **“go for List vs Set”** or whichever you want.
