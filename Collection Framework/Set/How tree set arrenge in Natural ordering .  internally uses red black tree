@@ -1,0 +1,170 @@
+
+### ✔ **TreeSet stores elements in *natural ordering***
+
+BUT the important part is:
+
+### ⭐ What is *natural ordering*?
+
+### ⭐ How does TreeSet decide this order?
+
+Let’s explain clearly & perfectly.
+
+---
+
+# ⭐ **Natural Ordering = Sorting Done Using compareTo()**
+
+TreeSet uses **Red-Black Tree** internally.
+
+To decide the order, it uses the **compareTo()** method of the elements.
+
+This method comes from the **Comparable** interface.
+
+---
+
+# ⭐ 1️⃣ **For Numbers → Natural Ordering = Ascending order**
+
+Because Integer class implements Comparable like this:
+
+```java
+public int compareTo(Integer other) {
+    return this - other;
+}
+```
+
+So:
+
+```
+30, 10, 20
+```
+
+TreeSet stores as:
+
+```
+10, 20, 30
+```
+
+**Why?**
+Because:
+
+* 10 < 20
+* 20 < 30
+
+The compareTo() logic tells TreeSet where to insert each element in the tree.
+
+---
+
+# ⭐ 2️⃣ **For Strings → Natural Ordering = Alphabetical order (Dictionary order)**
+
+String’s compareTo() works like:
+
+```java
+"apple".compareTo("banana") < 0  // because 'a' < 'b'
+```
+
+So TreeSet sorting example:
+
+```
+"Onkar", "Amit", "Chinmay"
+```
+
+TreeSet stores as:
+
+```
+Amit, Chinmay, Onkar
+```
+
+---
+
+# ⭐ 3️⃣ **For Characters → A < B < C < ... < Z**
+
+Example:
+
+```
+Set<Character> set = new TreeSet<>();
+set.add('z');
+set.add('a');
+set.add('m');
+```
+
+Stored as:
+
+```
+a, m, z
+```
+
+---
+
+# ⭐ **SO WHAT IS NATURAL ORDER?**
+
+Natural order is **the default sorting order defined by the class itself**
+(using **compareTo()** method).
+
+Classes that have natural order:
+
+| Class     | Natural Order         |
+| --------- | --------------------- |
+| Integer   | ascending             |
+| Double    | ascending             |
+| Character | alphabetical by ASCII |
+| String    | dictionary order      |
+| Date      | chronological         |
+| Boolean   | false < true          |
+
+---
+
+# ⭐ 4️⃣ How TreeSet Inserts Elements? (Visualization)
+
+### Example: Insert 30, 10, 20
+
+1. Insert 30 → root
+2. Insert 10 → 10 < 30 → goes left
+3. Insert 20 → 20 > 10 → goes right of 10
+
+Tree becomes:
+
+```
+      30
+     /
+   10
+     \
+      20
+```
+
+Final output:
+
+```
+[10, 20, 30]
+```
+
+Because TreeSet does an **in-order traversal** internally.
+
+---
+
+# ⭐ 5️⃣ If You Insert Your Own Objects?
+
+Then TreeSet needs **your class to be Comparable**
+OR
+you provide a **Comparator**.
+
+Example:
+
+```java
+class Student implements Comparable<Student> {
+    int age;
+
+    public int compareTo(Student s) {
+        return this.age - s.age;
+    }
+}
+```
+
+Now TreeSet sorts Students by age.
+
+---
+
+# ⭐ FINAL INTERVIEW ANSWER
+
+> **TreeSet stores elements in natural ordering, which means sorting based on the element’s compareTo() method. For Integer it is ascending order, for String it is alphabetical order, and for custom objects we must provide Comparable or Comparator. Internally TreeSet uses a Red-Black Tree for ordering.**
+
+---
+Just say **“go next”**.
