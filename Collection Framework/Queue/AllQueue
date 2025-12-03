@@ -1,0 +1,157 @@
+
+✔ **List Interface**
+✔ **Set Interface**
+✔ **Collection Interface basics**
+
+Now the **NEXT BIG PART** of the Java Collection Framework is:
+
+# ⭐ **QUEUE INTERFACE**
+
+You must learn Queue because it is widely used in:
+
+* Real-time systems (queues, scheduling)
+* BFS (graph algorithms)
+* Producer-consumer problems
+* Sliding window problems
+* Interview coding questions
+
+And it is very EASY.
+
+The Queue interface has **3 important implementations**:
+
+```
+Queue (Interface)
+   |
+   |-- LinkedList
+   |-- PriorityQueue
+   |-- Deque (Interface)
+          |
+          |-- ArrayDeque
+          |-- LinkedList
+```
+
+Let’s go step-by-step.
+
+---
+
+# ⭐ 1️⃣ What is Queue?
+
+> A Queue follows **FIFO (First In, First Out)** order.
+
+Example in real life:
+
+* Ticket queues
+* Printing queue
+* Task scheduling
+
+Java Queue stores:
+
+* Head → first element
+* Tail → last element
+
+---
+
+# ⭐ 2️⃣ Queue Interface Important Methods
+
+| Method        | Meaning                                    |
+| ------------- | ------------------------------------------ |
+| **add(e)**    | Inserts element; throws exception if fails |
+| **offer(e)**  | Inserts element; returns false if fails    |
+| **poll()**    | Removes head; returns null if empty        |
+| **remove()**  | Removes head; throws exception if empty    |
+| **peek()**    | Returns head; returns null if empty        |
+| **element()** | Returns head; throws exception             |
+
+👉 For safety: `offer()` + `poll()` + `peek()` are preferred.
+
+---
+
+# ⭐ 3️⃣ Implementations of Queue
+
+## A) **LinkedList** (acts as a Queue)
+
+```java
+Queue<Integer> q = new LinkedList<>();
+q.offer(10);
+q.offer(20);
+q.offer(30);
+
+System.out.println(q.poll());  // 10
+System.out.println(q.peek());  // 20
+```
+
+✔ Maintains order
+✔ Can add/remove from both ends
+✔ Used when you need a regular queue
+
+---
+
+## B) **PriorityQueue**
+
+> Stores elements in **sorted (min-heap)** order by default.
+
+Example:
+
+```java
+PriorityQueue<Integer> pq = new PriorityQueue<>();
+
+pq.offer(30);
+pq.offer(10);
+pq.offer(20);
+
+System.out.println(pq); // [10, 30, 20]
+System.out.println(pq.poll()); // 10 (smallest)
+```
+
+✔ Smallest element always comes out first
+✔ Used in:
+
+* Dijkstra Algorithm
+* Scheduling
+* Top K problems
+
+---
+
+## C) **Deque Interface**
+
+(Double-ended queue)
+
+Used when you need to add/remove from **both ends**.
+
+Implementations:
+
+### ✔ ArrayDeque (most used)
+
+```java
+Deque<String> dq = new ArrayDeque<>();
+dq.offerFirst("A");
+dq.offerLast("B");
+dq.offerFirst("C");
+
+System.out.println(dq); // C, A, B
+```
+
+✔ Very fast
+✔ Better than Stack
+✔ Better than LinkedList
+
+---
+
+# ⭐ Summary: What you completed + what’s next
+
+### ✔ Completed:
+
+* List
+* Set
+* Collection
+* HashSet
+* ArrayList
+* LinkedList
+
+### ⭐ Now completing:
+
+* Queue
+* PriorityQueue
+* Deque
+* ArrayDeque
+
