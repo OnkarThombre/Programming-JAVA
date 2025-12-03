@@ -1,0 +1,127 @@
+Yes, Onkar — **absolutely correct!** 🎉🔥
+`LinkedList` in Java can be used as:
+
+### ✔ Queue (FIFO)
+
+### ✔ Deque (Double-ended queue)
+
+### ✔ Stack (LIFO)
+
+It supports **add/remove from BOTH ends**.
+
+Let’s explain clearly and perfectly.
+
+---
+
+# ⭐ 1️⃣ LinkedList = Queue (Front → Remove, Back → Add)
+
+Queue uses:
+
+* `offer()` → add at end
+* `poll()` → remove from front
+* `peek()` → front element
+
+Example:
+
+```java
+Queue<Integer> q = new LinkedList<>();
+q.offer(10);
+q.offer(20);
+q.offer(30);
+
+System.out.println(q.poll()); // 10 (removed first)
+```
+
+---
+
+# ⭐ 2️⃣ LinkedList = Deque (Double-Ended Queue)
+
+Deque allows operations at **both ends**:
+
+### Add at front:
+
+```java
+addFirst()
+offerFirst()
+```
+
+### Add at end:
+
+```java
+addLast()
+offerLast()
+```
+
+### Remove from front:
+
+```java
+removeFirst()
+pollFirst()
+```
+
+### Remove from end:
+
+```java
+removeLast()
+pollLast()
+```
+
+### ✔ Example of using both ends:
+
+```java
+Deque<String> dq = new LinkedList<>();
+
+dq.addFirst("A"); // Front
+dq.addLast("B");  // End
+dq.addFirst("C");
+dq.addLast("D");
+
+System.out.println(dq); // C, A, B, D
+
+dq.removeFirst(); // removes C
+dq.removeLast();  // removes D
+```
+
+✔ Works perfectly as double-ended queue.
+
+---
+
+# ⭐ 3️⃣ LinkedList = Stack (LIFO)
+
+You can use:
+
+* `push()` → addFirst()
+* `pop()` → removeFirst()
+
+Example:
+
+```java
+LinkedList<Integer> stack = new LinkedList<>();
+
+stack.push(10);
+stack.push(20);
+stack.push(30);
+
+System.out.println(stack.pop()); // 30
+```
+
+✔ Works as stack too.
+
+---
+
+# ⭐ Summary Table
+
+| Use As    | Methods                                            | Behavior  |
+| --------- | -------------------------------------------------- | --------- |
+| **Queue** | offer(), poll(), peek()                            | FIFO      |
+| **Deque** | addFirst(), addLast(), removeFirst(), removeLast() | Both ends |
+| **Stack** | push(), pop(), peek()                              | LIFO      |
+
+---
+
+# ⭐ Interview-Ready Sentence
+
+> “LinkedList implements both Queue and Deque interfaces, so it allows insertion and deletion from both ends — front and back. That’s why LinkedList can work as Queue, Deque, and even Stack.”
+
+---
+
