@@ -1,0 +1,41 @@
+package Map;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class HashMapClass {
+	public static void main(String[] args) {
+		Map<Integer, String> map = new HashMap<>();
+		map.put(1, "Onkar");
+		map.put(2, "Akash");
+		map.put(3, "Sukant");
+		
+		System.out.println(map);
+		
+		map.put(3,  "Satwik"); // value get replaces
+		System.out.println(map);
+		
+		boolean b = map.containsKey(3);
+		System.out.println(b);
+		
+		System.out.println(map.get(5)); // if key not exists then it returns null
+		System.out.println(map.get(1)); // it return value respect to that key
+		
+		for(Map.Entry<Integer, String> mapele : map.entrySet())
+		{
+//			System.out.println(mapele);
+			System.out.println(mapele.getKey() + mapele.getValue());
+		}
+		
+		for(Integer mapKey : map.keySet())
+		{
+			System.out.println(mapKey);
+		}
+		
+		for(String mapValue : map.values())
+		{
+			System.out.println(mapValue);
+		}
+//map.values();
+	}
+}
