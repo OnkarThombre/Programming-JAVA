@@ -323,3 +323,195 @@ Insertion is random heap structure,
 but **root always minimum** → therefore smallest element always removed first.
 
 ---
+
+QQQQQQ ??????
+
+Great, Onkar! 🔥
+Let’s explain **exactly HOW PriorityQueue stores elements internally** when you insert:
+
+```
+30, 10, 20
+```
+
+This is VERY important for interviews.
+
+---
+
+# ⭐ **PriorityQueue Internal Working**
+
+Java's `PriorityQueue` uses a **Min-Heap** internally.
+
+✔ Implemented using an **array**
+✔ Smallest element is always at **index 0**
+✔ Heap property is maintained after each insertion
+✔ The queue does NOT store elements in sorted order internally
+✔ But **poll()** always returns the smallest element
+
+---
+
+# ⭐ INSERTION STEPS: 30, 10, 20
+
+Let's see it step by step (with heap diagrams).
+
+---
+
+# ⭐ Step 1 → Insert 30
+
+Heap:
+
+```
+[30]
+```
+
+✔ No parent to compare
+✔ Heap ok
+
+---
+
+# ⭐ Step 2 → Insert 10
+
+Temporarily insert at next available index.
+
+```
+      30
+     /
+   10
+```
+
+Array internally:
+
+```
+[30, 10]
+```
+
+Now heapify (compare child with parent):
+
+```
+10 < 30 → swap
+```
+
+New heap:
+
+```
+      10
+     /
+   30
+```
+
+Array internally:
+
+```
+[10, 30]
+```
+
+---
+
+# ⭐ Step 3 → Insert 20
+
+Insert at next position (right child):
+
+```
+      10
+     /  \
+   30    20
+```
+
+Array temporarily:
+
+```
+[10, 30, 20]
+```
+
+Compare 20 with parent (10):
+
+```
+20 >= 10 → no swap
+```
+
+Heap remains:
+
+```
+      10
+     /  \
+   30    20
+```
+
+Internal array:
+
+```
+[10, 30, 20]
+```
+
+---
+
+# ⭐ Final Internal Structure After 30, 10, 20
+
+Heap:
+
+```
+      10
+     /  \
+   30    20
+```
+
+Array inside PriorityQueue:
+
+```
+[10, 30, 20]
+```
+
+---
+
+# ⭐ VERY IMPORTANT POINT
+
+When you print:
+
+```java
+System.out.println(pq);
+```
+
+Output may show:
+
+```
+[10, 30, 20]
+```
+
+But this does NOT mean:
+
+* It is sorted
+* It is stored in the same order you inserted
+
+PriorityQueue **only guarantees**:
+👉 `peek()` returns smallest
+👉 `poll()` removes smallest
+
+Internally it keeps **min-heap** structure, NOT sorted list.
+
+---
+
+# ⭐ What happens if we poll?
+
+```java
+pq.poll(); // returns 10 (smallest)
+```
+
+Heap becomes:
+
+```
+      20
+     /
+   30
+```
+
+---
+
+# ⭐ INTERVIEW SUMMARY
+
+> “PriorityQueue in Java uses a Min-Heap internally.
+> When inserting 30, 10, 20, the final heap structure is [10, 30, 20].
+> It is NOT sorted.
+> The smallest element is always at the root (index 0), so poll() always removes the minimum element.”
+
+---
+
+
