@@ -1,0 +1,113 @@
+
+---
+
+# ⭐ SET INTERFACE ROADMAP
+
+You have completed:
+
+✔ **HashSet** (fast, no order, most used)
+
+Next 2 parts:
+
+1️⃣ **LinkedHashSet** → HashSet + maintains insertion order
+2️⃣ **TreeSet** → Sorted Set (Red-Black Tree)
+
+Both are easy and short, but **very important for interviews**.
+
+After these 2,
+👉 **Set is 100% complete**.
+
+Let’s continue.
+
+---
+
+# ⭐ 1️⃣ LinkedHashSet (Next Step)
+
+### ✔ Features:
+
+* Keeps **insertion order**
+* No duplicates
+* Uses **Hash table + Linked List**
+* Slightly slower than HashSet
+* Allows 1 null
+
+### ✔ Example:
+
+```java
+Set<String> set = new LinkedHashSet<>();
+set.add("B");
+set.add("A");
+set.add("C");
+
+System.out.println(set); 
+```
+
+Output:
+
+```
+[B, A, C]   // order preserved
+```
+
+### ✔ When to use?
+
+When you want:
+
+* No duplicates
+* But **maintain insertion order**
+
+---
+
+# ⭐ 2️⃣ TreeSet (Final Step)
+
+### ✔ Features:
+
+* Stores elements in **sorted order (ascending)**
+* No duplicates
+* Uses **Red-Black Tree**
+* Slower compared to HashSet/LinkedHashSet
+* Does NOT allow null
+
+### ✔ Example:
+
+```java
+Set<Integer> set = new TreeSet<>();
+set.add(30);
+set.add(10);
+set.add(20);
+
+System.out.println(set);
+```
+
+Output:
+
+```
+[10, 20, 30]
+```
+
+### ✔ When to use?
+
+When you need:
+
+* Sorted output
+* Range operations (`first()`, `last()`, `ceiling()`, `floor()`)
+
+---
+
+# ⭐ Summary: All 3 Set Implementations
+
+| Set Type          | Order             | Speed     | Internal             |
+| ----------------- | ----------------- | --------- | -------------------- |
+| **HashSet**       | ❌ No order        | ⚡ Fastest | HashMap (hash table) |
+| **LinkedHashSet** | ✔ Insertion order | ⚡ Fast    | Hash + Linked list   |
+| **TreeSet**       | ✔ Sorted order    | 🐢 Slow   | Red-Black Tree       |
+
+---
+
+# 🎯 Interview-Ready Answer
+
+> “HashSet is fast and does not maintain order.
+> LinkedHashSet maintains insertion order.
+> TreeSet maintains sorted order using a Red-Black Tree.”
+
+---
+
