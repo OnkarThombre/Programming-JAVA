@@ -187,3 +187,127 @@ This makes operations **O(1)** average.
 
 ---
 
+>>>>> 
+
+some haspmap methods 
+Sure Onkar! 🔥
+Let me show you **ALL correct ways** to iterate over:
+
+✅ **Keys**
+✅ **Values**
+✅ **Key–Value pairs**
+
+Because this is VERY important for interviews.
+
+---
+
+# ⭐ 1️⃣ **Iterate Over Keys**
+
+If you want **only keys**:
+
+```java
+for (String key : map.keySet()) {
+    System.out.println(key);
+}
+```
+
+✔ `map.keySet()` returns a **Set of keys**
+✔ You loop through each key
+
+---
+
+# ⭐ 2️⃣ **Iterate Over Values**
+
+If you want **only values**:
+
+```java
+for (Integer value : map.values()) {
+    System.out.println(value);
+}
+```
+
+✔ `map.values()` returns a **Collection of values**
+
+---
+
+# ⭐ 3️⃣ **Iterate Over Key + Value (BEST WAY)**
+
+This is the MOST used method:
+
+```java
+for (Map.Entry<String, Integer> entry : map.entrySet()) {
+    System.out.println(entry.getKey() + " → " + entry.getValue());
+}
+```
+
+✔ `entry.getKey()` = key
+✔ `entry.getValue()` = value
+✔ Most efficient
+✔ Recommended in interviews
+
+---
+
+# ⭐ 4️⃣ **If you really want to use keySet() + get()**
+
+```java
+for (String key : map.keySet()) {
+    System.out.println(key + " = " + map.get(key));
+}
+```
+
+⚠ This is OK but **slightly slower**, because every `map.get(key)` does a lookup.
+
+---
+
+# ⭐ 5️⃣ **Iterate using forEach() (Java 8)**
+
+### ✔ For each entry:
+
+```java
+map.forEach((k, v) -> {
+    System.out.println(k + " : " + v);
+});
+```
+
+This is modern and clean.
+
+---
+
+# ⭐ SUMMARY (easy to remember)
+
+| Need             | Use                      |
+| ---------------- | ------------------------ |
+| Only keys        | `map.keySet()`           |
+| Only values      | `map.values()`           |
+| Both key + value | `map.entrySet()`         |
+| Modern Java      | `map.forEach((k,v)->{})` |
+
+---
+
+# ⭐ If your code was this:
+
+```java
+for (Map mapValue : map.keySet())
+{
+    
+}
+```
+
+This is **incorrect**, the type is wrong.
+
+Correct version:
+
+```java
+for (String key : map.keySet()) {
+    // use key
+}
+```
+
+or for values:
+
+```java
+for (Integer val : map.values()) {
+    // use val
+}
+```
+
