@@ -1,0 +1,189 @@
+
+We will go in this order:
+
+1️⃣ **HashMap (MOST IMPORTANT)**
+2️⃣ **LinkedHashMap**
+3️⃣ **TreeMap**
+4️⃣ **Hashtable (legacy)**
+5️⃣ **Map Methods**
+6️⃣ **Internal Working (hashing, buckets, collision)**
+
+Today we start with **HashMap** ONLY (deep + simple).
+
+---
+
+# ⭐ 1️⃣ HASHMAP — Step-by-Step, Deep but Simple
+
+---
+
+# ⭐ **What is HashMap?**
+
+HashMap stores data in **key → value** pairs.
+
+✔ Keys must be **unique**
+✔ Values can be **duplicate**
+✔ Allows **1 null key**
+✔ Allows many null values
+✔ **Order is NOT guaranteed**
+
+---
+
+# ⭐ **Basic Example**
+
+```java
+Map<String, Integer> map = new HashMap<>();
+
+map.put("Onkar", 28);
+map.put("Pune", 411001);
+map.put("Onkar", 30); // overwrites previous value
+map.put("City", null);
+```
+
+Output:
+
+```
+{City=null, Onkar=30, Pune=411001}
+```
+
+---
+
+# ⭐ 2️⃣ **Why HashMap Removes Duplicate Keys?**
+
+Because every key must be **unique**.
+
+```java
+map.put("Onkar", 28);
+map.put("Onkar", 30);
+```
+
+Second put **overwrites** the value.
+
+---
+
+# ⭐ 3️⃣ **How HashMap Stores Data Internally?**
+
+HashMap uses a **hash table** inside — an array of buckets.
+
+Each bucket holds:
+
+```
+Node<K,V> → key, value, hash, next
+```
+
+Steps:
+
+### STEP 1 → Calculate hash of key
+
+```java
+hash = key.hashCode();
+```
+
+### STEP 2 → Bucket index
+
+```java
+index = hash % array_length
+```
+
+### STEP 3 → Store (key, value) in that bucket
+
+If bucket is empty → store
+If NOT empty → collision handling
+
+---
+
+# ⭐ 4️⃣ **Collision Handling (VERY Important)**
+
+If 2 keys go to SAME bucket index → **collision**
+
+HashMap handles it by:
+
+### ✔ Java 7 and earlier → **LinkedList chaining**
+
+### ✔ Java 8 and later →
+
+* If collisions < 8 → LinkedList
+* If collisions >= 8 → **Red-Black Tree**
+
+---
+
+# ⭐ 5️⃣ **HashMap Example with Collision**
+
+Suppose keys:
+
+```
+"ABC" → bucket 5  
+"PQR" → bucket 5
+```
+
+Bucket 5 stores:
+
+```
+ABC → null
+PQR → ABC → null   (linked list)
+```
+
+If many collisions → converts to:
+
+```
+Red-Black Tree in the bucket
+```
+
+---
+
+# ⭐ 6️⃣ **Key Methods of HashMap**
+
+| Method           | Meaning                     |
+| ---------------- | --------------------------- |
+| put(key, value)  | Insert / update             |
+| get(key)         | Retrieve value              |
+| containsKey(key) | Check if key exists         |
+| remove(key)      | Remove key-value pair       |
+| keySet()         | Returns all keys            |
+| values()         | Returns all values          |
+| entrySet()       | Returns all key-value pairs |
+
+---
+
+# ⭐ 7️⃣ Small Practical Program
+
+```java
+Map<String, Integer> map = new HashMap<>();
+
+map.put("A", 1);
+map.put("B", 2);
+map.put("C", 3);
+
+System.out.println(map.get("A")); // 1
+System.out.println(map.containsKey("B")); // true
+
+for (Map.Entry<String, Integer> entry : map.entrySet()) {
+    System.out.println(entry.getKey() + " → " + entry.getValue());
+}
+```
+
+---
+
+# ⭐ 8️⃣ Why Is HashMap So Fast?
+
+Because it does NOT search linearly.
+
+It directly goes to index using:
+
+```
+hashCode() → index calculation → bucket
+```
+
+This makes operations **O(1)** average.
+
+---
+
+# ⭐ 9️⃣ HashMap Interview Summary
+
+> “HashMap stores key-value pairs using hashing.
+> Keys are unique, values can be duplicate.
+> It uses an array of buckets internally.
+> Collisions are handled using LinkedList or Red-Black Tree.
+> It gives O(1) performance for insertion, search, and delete on average.”
+
+---
+
