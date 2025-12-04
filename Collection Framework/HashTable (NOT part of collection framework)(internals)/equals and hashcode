@@ -1,0 +1,165 @@
+Great questions, Onkar — and you are VERY close to understanding everything.
+Let me clear all your confusion **perfectly**, step-by-step, in very simple language.
+
+---
+
+# ⭐ CONFUSION 1
+
+**“To find index, we find hash value → index = hash % capacity.”
+Can two elements get SAME hash value?”**
+
+### ✔ YES, absolutely!
+
+Different elements can generate the **same hash value**.
+This is called a **hash collision**.
+
+Example:
+
+```
+"FB".hashCode() → 2236
+"Ea".hashCode() → 2236
+```
+
+Both different strings → same hash → same bucket → collision.
+
+👉 So **same hash value is normal**.
+👉 Collisions are expected and handled.
+
+---
+
+# ⭐ CONFUSION 2
+
+**“Set/Map stores only unique elements.
+But hashCode() can be same for different elements.
+How can we say uniqueness?”**
+
+Perfect question.
+The answer is very important.
+
+---
+
+# ⭐ HASHMAP / HASHSET USE TWO STEPS TO CHECK UNIQUENESS
+
+Not just `hashCode()`.
+Both `hashCode()` **AND** `equals()` are used.
+
+```
+STEP 1: Compare hashCode()
+STEP 2: If hashCodes same → compare equals()
+```
+
+---
+
+# ⭐ Step-by-step Example
+
+Suppose:
+
+```
+"FB" and "Ea"
+```
+
+Both have same hashCode → SAME BUCKET → collision.
+
+Now HashMap checks:
+
+```
+"FB".equals("Ea") ?
+```
+
+Result = **false**
+
+So Map knows these are **different keys**, and allows both.
+
+👉 SAME hashCode does NOT mean same object
+👉 equals() must also match for duplication
+
+---
+
+# ⭐ How Set/Map decide duplicates?
+
+### ✔ DUPLICATE means:
+
+```
+hashCode SAME  AND  equals() returns TRUE
+```
+
+### ✔ Different element means:
+
+```
+hashCode SAME  BUT  equals() returns FALSE
+```
+
+OR
+
+```
+hashCode DIFFERENT  (no need to check equals)
+```
+
+---
+
+# ⭐ Visualization of SET/MAP Logic
+
+Let’s say you add:
+
+```
+set.add("Hello");
+set.add("Hello");
+```
+
+Both:
+
+* hashCode same
+* equals true → SAME object → ignore duplicate
+
+If you add:
+
+```
+set.add("FB"); // hash = 2236
+set.add("Ea"); // hash = 2236
+```
+
+Both:
+
+* hashCode same
+* equals false → DIFFERENT → both inserted
+
+---
+
+# ⭐ FINAL SIMPLE FORMULA:
+
+### ✔ 1. hashCode() decides **bucket**
+
+### ✔ 2. equals() decides **duplicate or not**
+
+---
+
+# ⭐ INTERVIEW ANSWER (Use This Exactly)
+
+> “HashMap first checks hashCode.
+> If two keys have the same hashCode, they go to the same bucket (collision).
+> Then HashMap uses equals() to check if they are actually the same key.
+> Only if equals() is also true, the key is considered duplicate.
+> This is how HashSet/HashMap maintain uniqueness even when hashCodes collide.”
+
+---
+
+# ⭐ SUMMARY TO REMOVE ALL CONFUSION
+
+| Concept                              | Meaning                             |
+| ------------------------------------ | ----------------------------------- |
+| Can two elements have same hashCode? | ✔ YES                               |
+| Does that mean they are duplicates?  | ❌ NO                                |
+| When are two elements duplicates?    | hashCode same **AND** equals = true |
+| Why collision occurs?                | same bucket index                   |
+| How collision is handled?            | linked list or tree                 |
+
+---
+
+If you want, I can also explain:
+
+✔ How equals() and hashCode() rule works
+✔ Why overriding both is required
+✔ Real code examples of collision
+✔ How Java internally checks for duplicate keys in HashSet/HashMap
+
+Just say **“explain hashCode-equals rule”**.
