@@ -1,0 +1,200 @@
+Great, Onkar! 🔥
+Now let’s cover **TreeMap** — a very important and slightly advanced Map implementation.
+
+I will explain it **deep + simple** with diagrams and examples just like interviews want.
+
+---
+
+# ⭐ **What is TreeMap?**
+
+TreeMap stores **key–value pairs** in **sorted order of keys**.
+
+✔ Maintains **ascending (natural) order**
+✔ No random order
+✔ No insertion order
+✔ Uses **Red-Black Tree** internally
+✔ Does **NOT allow null key**
+✔ Allows multiple null values
+✔ Slower than HashMap & LinkedHashMap
+
+---
+
+# ⭐ Example
+
+```java
+Map<Integer, String> map = new TreeMap<>();
+
+map.put(30, "A");
+map.put(10, "B");
+map.put(20, "C");
+
+System.out.println(map);
+```
+
+### Output:
+
+```
+{10=B, 20=C, 30=A}
+```
+
+✔ Sorted by **keys**, NOT by values
+✔ Automatically arranged
+
+---
+
+# ⭐ Internal Working
+
+![Image](https://media.geeksforgeeks.org/wp-content/uploads/20210112023659/redblacktree.png?utm_source=chatgpt.com)
+
+![Image](https://sbme-tutorials.github.io/gallery/trees/tree.svg?utm_source=chatgpt.com)
+
+TreeMap internally uses a **Red-Black Tree**:
+
+Example insertion order:
+
+```
+30 → 10 → 20
+```
+
+Tree becomes:
+
+```
+       20
+     /     \
+   10       30
+```
+
+That’s why output is:
+
+```
+10, 20, 30
+```
+
+---
+
+# ⭐ 1️⃣ Natural Ordering (VERY IMPORTANT)
+
+TreeMap sorts based on key's **compareTo()** method.
+
+### Integer → ascending
+
+### String → alphabetical
+
+### Character → ASCII order
+
+### Custom object → you must use Comparable or Comparator
+
+---
+
+# ⭐ 2️⃣ How TreeMap compares keys?
+
+When you insert:
+
+```java
+map.put(50, "a");
+map.put(20, "b");
+map.put(40, "c");
+```
+
+It uses:
+
+```
+key1.compareTo(key2)
+```
+
+If:
+
+* < 0 → go left
+* > 0 → go right
+* = 0 → overwrite value
+
+---
+
+# ⭐ TreeMap does NOT allow null key
+
+```java
+map.put(null, "A");  // ❌ NullPointerException
+```
+
+Reason:
+
+* TreeMap must compare keys using compareTo()
+* compareTo(null) → not possible
+
+---
+
+# ⭐ 3️⃣ TreeMap Important Methods
+
+| Method          | Meaning          |
+| --------------- | ---------------- |
+| `firstKey()`    | smallest key     |
+| `lastKey()`     | largest key      |
+| `higherKey(k)`  | next greater key |
+| `lowerKey(k)`   | next smaller key |
+| `ceilingKey(k)` | ≥ k              |
+| `floorKey(k)`   | ≤ k              |
+| `headMap(k)`    | keys < k         |
+| `tailMap(k)`    | keys ≥ k         |
+| `subMap(a,b)`   | keys in range    |
+
+---
+
+# ⭐ Example (Range Queries)
+
+```java
+TreeMap<Integer, String> map = new TreeMap<>();
+
+map.put(10, "A");
+map.put(20, "B");
+map.put(30, "C");
+map.put(40, "D");
+
+System.out.println(map.firstKey());   // 10
+System.out.println(map.lastKey());    // 40
+System.out.println(map.higherKey(20)); // 30
+System.out.println(map.lowerKey(20));  // 10
+System.out.println(map.subMap(10, 40)); // 10 & 20 & 30
+```
+
+---
+
+# ⭐ TreeMap vs HashMap vs LinkedHashMap (Very Important)
+
+| Feature     | HashMap     | LinkedHashMap      | TreeMap        |
+| ----------- | ----------- | ------------------ | -------------- |
+| Order       | ❌ No order  | ✔ Insertion order  | ✔ Sorted order |
+| Internal DS | Hash table  | Hash + Linked List | Red-Black Tree |
+| Speed       | Fastest     | Fast               | Slowest        |
+| Null key    | ✔ Yes       | ✔ Yes              | ❌ No           |
+| Use case    | Fast lookup | Keep order         | Sorted data    |
+
+---
+
+# ⭐ When to Use TreeMap?
+
+Use TreeMap when:
+
+✔ You need sorted keys
+✔ You need range queries
+✔ You need floor/ceiling searches
+✔ You need ordered iteration
+
+Examples:
+
+* Storing scores
+* Leaderboards
+* Timetable sorting
+* Date/time indexing
+* Dictionaries
+
+---
+
+# ⭐ INTERVIEW SUMMARY (Best Answer)
+
+> “TreeMap stores key-value pairs in sorted order of keys.
+> It uses a Red-Black Tree internally, and sorting is based on compareTo() of keys.
+> It does not allow null keys and is slower than HashMap.
+> It supports range-based operations like subMap, headMap, and tailMap.”
+
+---
+
