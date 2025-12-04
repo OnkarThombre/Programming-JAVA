@@ -1,0 +1,150 @@
+
+# ⭐ **LinkedHashMap**
+
+This is the second most important Map after HashMap.
+Easy to understand + frequently asked in interviews.
+
+Let’s go deep, simple, and with examples.
+
+---
+
+# ⭐ 1️⃣ What is LinkedHashMap?
+
+LinkedHashMap:
+
+✔ Stores **key–value pairs**
+✔ **Maintains insertion order**
+✔ Allows **1 null key**, many null values
+✔ Faster than TreeMap
+✔ Slightly slower than HashMap
+✔ Uses **HashMap + Doubly Linked List** internally
+
+---
+
+# ⭐ 2️⃣ Why is it called LinkedHashMap?
+
+Because internally:
+
+```
+HashMap  → for fast access  
+LinkedList → for maintaining insertion order
+```
+
+That’s why the name **LinkedHashMap**.
+
+---
+
+# ⭐ 3️⃣ Example Code (Simple)
+
+```java
+Map<String, Integer> map = new LinkedHashMap<>();
+
+map.put("Onkar", 1);
+map.put("Thombre", 2);
+map.put("Pune", 3);
+map.put("Java", 4);
+
+System.out.println(map);
+```
+
+### Output:
+
+```
+{Onkar=1, Thombre=2, Pune=3, Java=4}
+```
+
+✔ Same order as insertion
+❌ No sorting
+❌ No random order like HashMap
+
+---
+
+# ⭐ 4️⃣ Internal Working Diagram
+
+![Image](https://lh3.googleusercontent.com/dmNl8a4gNJpfc03YzppABlrBOMJkjr12I5o3NXgC5PJeJMYNGfWtd2Pq616vn03lCE107_wQ7Fe6I2PB5Y0tJJSWD-WTPL2njqplV_HuLSEtZ7oH4r8_O4OZfo6PGvf0NH8EQC0?utm_source=chatgpt.com)
+
+![Image](https://i.sstatic.net/fiJIk.png?utm_source=chatgpt.com)
+
+LinkedHashMap maintains a **doubly linked list** connecting all entries:
+
+```
+HEAD <--> (Onkar=1) <--> (Thombre=2) <--> (Pune=3) <--> (Java=4) <--> TAIL
+```
+
+While HashMap stores them in random order, LinkedHashMap preserves the order using links.
+
+---
+
+# ⭐ 5️⃣ When to Use LinkedHashMap?
+
+Use it when you need:
+
+✔ Fast access (almost as fast as HashMap)
+✔ But ALSO need **insertion order**
+
+Perfect for:
+
+* Caches
+* Maintaining user sessions
+* Display values in order of insertion
+* Recently visited history (LRU caching)
+
+---
+
+# ⭐ 6️⃣ LinkedHashMap vs HashMap
+
+| Feature            | HashMap     | LinkedHashMap               |
+| ------------------ | ----------- | --------------------------- |
+| Order              | ❌ No order  | ✔ Maintains insertion order |
+| Internal structure | Hash table  | Hash table + Linked List    |
+| Speed              | Fastest     | Slightly slower             |
+| Null key           | Allowed     | Allowed                     |
+| Use case           | Fast access | Ordered data                |
+
+---
+
+# ⭐ 7️⃣ Important Methods Are Same as HashMap
+
+```java
+put()
+get()
+remove()
+containsKey()
+containsValue()
+keySet()
+values()
+entrySet()
+```
+
+Because both implement the **Map** interface.
+
+---
+
+# ⭐ 8️⃣ Iterate Over LinkedHashMap Example
+
+```java
+for (Map.Entry<String, Integer> entry : map.entrySet()) {
+    System.out.println(entry.getKey() + " -> " + entry.getValue());
+}
+```
+
+Output maintains order:
+
+```
+Onkar -> 1
+Thombre -> 2
+Pune -> 3
+Java -> 4
+```
+
+---
+
+# ⭐ INTERVIEW SUMMARY (Best Answer)
+
+> “LinkedHashMap is similar to HashMap but maintains insertion order.
+> Internally, it uses a hash table for fast lookup and a doubly linked list to maintain ordering.
+> It allows one null key and multiple null values.
+> It is slightly slower than HashMap but faster than TreeMap.”
+
+---
+
