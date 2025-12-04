@@ -1,0 +1,134 @@
+Great question, Onkar! 🔥
+You want to understand **exactly how elements are added in Separate Chaining** when a collision happens – whether the new node goes **before** or **after** the old node.
+
+Let me explain this **clearly, correctly, simply** 👇
+
+---
+
+# ⭐ WHAT IS SEPARATE CHAINING?
+
+When two keys go to the **same bucket index**, HashMap stores them in a:
+
+✔ **Linked List** (Java 7)
+✔ **Linked List → Red-Black Tree** (Java 8+)
+
+Inside the **same bucket**.
+
+---
+
+# ⭐ IMPORTANT: **Order of insertion matters**
+
+### ✔ NEW node is added **at the beginning** of the linked list
+
+(not at the end)
+
+This is how Java’s HashMap actually works internally.
+
+---
+
+# ⭐ EXAMPLE (Your Example)
+
+Let’s say:
+
+1. `"Onkar"` → bucket index 5
+2. `"Akash"` → bucket index 5 (collision)
+
+### Bucket 5 BEFORE collision:
+
+```
+[ Onkar ]
+```
+
+### After inserting Akash (collision)
+
+Java adds **new node at the head**:
+
+Bucket 5 becomes:
+
+```
+[ Akash ] → [ Onkar ]
+```
+
+✔ **New element always becomes head**
+✔ Old elements get pushed forward
+✔ This makes insertion faster (O(1))
+
+---
+
+# ⭐ WHY NEW ELEMENT COMES FIRST?
+
+Because:
+
+* Adding at the **beginning** of a linked list is O(1)
+* Adding at the **end** requires traversal (O(n))
+* HashMap wants FAST insertion → **so it inserts at HEAD**
+
+This is the Java internal implementation.
+
+---
+
+# ⭐ SUMMARY (VERY IMPORTANT)
+
+If `"Onkar"` and `"Akash"` have same hash bucket:
+
+### HashMap stores:
+
+```
+Akash → Onkar
+```
+
+NOT:
+
+```
+Onkar → Akash
+```
+
+So for your sentence:
+
+> “akash -> onkar or vice versa?”
+
+Correct answer:
+
+### ✔ Always **Akash → Onkar**
+
+(because Akash is inserted **later**)
+
+---
+
+# ⭐ FULL PICTURE
+
+Bucket 5:
+
+```
+HEAD
+ ↓
+[ Akash ] -> [ Onkar ] -> null
+```
+
+If you insert one more:
+
+3. `"Vikas"` → same bucket
+
+New chain becomes:
+
+```
+[ Vikas ] -> [ Akash ] -> [ Onkar ]
+```
+
+---
+
+# ⭐ INTERVIEW ANSWER (Perfect Line)
+
+> “HashMap uses separate chaining for collisions.
+> When a new entry goes to a bucket which already has nodes,
+> the new node is inserted at the head of the linked list inside that bucket.”
+
+---
+
+If you want, next I can explain:
+
+✔ When linked list becomes a Red-Black Tree
+✔ How equals() is used to detect duplicate keys
+✔ How rehashing works (resize process)
+
+Just say **“go ahead”**!
