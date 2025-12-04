@@ -1,0 +1,349 @@
+Onkar, **superb questions** — you are thinking exactly like an interviewer expects.
+Let me explain **Linear Probing, Quadratic Probing, Double Hashing** **VERY clearly and correctly**, fixing the small mistakes you made.
+
+This will remove your confusion completely 🔥
+
+---
+
+# ⭐ A) **LINEAR PROBING** — Your understanding is CORRECT ✔
+
+### You can say:
+
+> **“If the calculated index is occupied, linear probing checks the next index (i+1), if that is also full then next (i+2), and so on, until an empty index is found.”**
+
+Example:
+
+Capacity = 5
+Hash index = 2, but index 2 is full
+
+We try:
+
+```
+2 → 3 → 4 → 0 → 1   (wrap around)
+```
+
+✔ Perfect explanation
+✔ Interview-ready
+
+---
+
+# ⭐ B) **QUADRATIC PROBING** — Tiny mistake in your sentence ❌
+
+You said:
+
+> “we square that index or hash value and assign that index”
+
+This is not correct.
+
+Quadratic probing does NOT square the index.
+
+### ✔ Correct rule:
+
+After index = hash(key), we check in this order:
+
+```
+index + 1²,
+index + 2²,
+index + 3²,
+...
+```
+
+### So formula is:
+
+```
+newIndex = (hash + i*i) % capacity
+```
+
+Example:
+Hash index = 4, capacity = 5
+
+Check sequence:
+
+```
+i = 1 → (4 + 1)  % 5 = 0
+i = 2 → (4 + 4)  % 5 = 3
+i = 3 → (4 + 9)  % 5 = 3  (collision again)
+i = 4 → (4 + 16) % 5 = 0  (repeat)
+```
+
+⚠ So quadratic probing sometimes forms loops → that’s why we use **modulo operator** `% capacity` to keep values inside range.
+
+✔ You NEVER square the array index
+✔ You square the **probe number** (1, 2, 3...)
+
+---
+
+# ⭐ C) **DOUBLE HASHING** — You are slightly confused but close 👍
+
+You said:
+
+> “we again find hash code but on what?”
+> “Do we change the hash code formula?”
+
+Let’s correct this beautifully.
+
+### ✔ Double Hashing uses **2 hash functions**
+
+Example:
+
+```
+h1(key) = primary hash
+h2(key) = secondary hash
+```
+
+### ✔ Formula for probing:
+
+```
+newIndex = (h1(key) + i * h2(key)) % capacity
+```
+
+### ✔ Important:
+
+* We **do NOT** change the element
+* We **do NOT** calculate hash from the index
+* We simply apply **second hash function** on the SAME element
+
+So if the primary hash index is full:
+
+1. First check:
+
+```
+h1(key)
+```
+
+2. Second check:
+
+```
+h1(key) + 1*h2(key)
+```
+
+3. Third check:
+
+```
+h1(key) + 2*h2(key)
+```
+
+…and so on.
+
+Example:
+
+Let:
+
+```
+h1(key) = 4  
+h2(key) = 3  
+capacity = 10
+```
+
+Sequence:
+
+```
+4
+(4 + 1*3) % 10 = 7
+(4 + 2*3) % 10 = 0
+(4 + 3*3) % 10 = 3
+(4 + 4*3) % 10 = 6
+```
+
+✔ This avoids clustering
+✔ Much better than linear/quadratic probing
+
+---
+
+# ⭐ FINAL INTERVIEW-SHORT ANSWERS ( MEMORIZE THESE )
+
+### ✔ **Linear Probing**
+
+> “If the index is occupied, check next index (i+1) until an empty slot is found.”
+
+### ✔ **Quadratic Probing**
+
+> “Check empty slots using i² increments: (index + 1²), (index + 2²), (index + 3²)..., using modulo to wrap around.”
+
+### ✔ **Double Hashing**
+
+> “We use a second hash function.
+> If collision occurs: newIndex = h1(key) + i*h2(key).
+> This reduces clustering and is considered the best probing technique.”
+
+---
+
+# ⭐ If you want, I can show:
+
+✔ diagrams for all three probing techniques
+✔ how they work in real hashtable arrays
+✔ example code for Hash Table with probing
+
+Just say **“show diagram”** or **“give code”**.
+
+
+
+
+
+
+
+
+
+
+
+Great, Onkar — you’re VERY close.
+Let me clear this **perfectly and simply**, because the idea of “second hash function” often confuses everyone.
+
+---
+
+# ⭐ YOUR QUESTION
+
+**“If my first hash function gives index 3, and second hash function exists, do I ‘mix’ both?
+Do I hash element again with both functions?”**
+
+👉 **NO mixing**
+👉 **NO combining**
+👉 **NO rehashing the index**
+
+The truth is **VERY simple** 👇
+
+---
+
+# ⭐ ✔ Double Hashing uses 2 hash functions, BUT both hash the **same element**, independently.
+
+Meaning:
+
+* First hash function → gives **starting index**
+* Second hash function → gives **step size** (how far to jump next)
+
+They do NOT mix together.
+They are used **separately** and **mathematically combined**.
+
+Let’s see clearly.
+
+---
+
+# ⭐ 1️⃣ Step 1: Compute first hash
+
+Example:
+
+```
+h1(key) = 3
+```
+
+This means:
+
+👉 Try storing the element at index **3**
+If index 3 empty → done
+If index 3 filled → collision → use second hash
+
+---
+
+# ⭐ 2️⃣ Step 2: Compute second hash
+
+Example:
+
+```
+h2(key) = 5
+```
+
+👉 This is NOT a new index
+👉 This is **jump size**
+👉 This decides how far to move to find next empty cell
+
+---
+
+# ⭐ 3️⃣ Step 3: Apply probing formula
+
+```
+newIndex = (h1(key) + i * h2(key)) % capacity
+```
+
+Where:
+
+```
+i = 1, 2, 3, ...
+```
+
+So final computed indices are:
+
+### ✔ First attempt:
+
+```
+i = 0
+index = (3 + 0*5) % 10 = 3
+```
+
+### ✔ Second attempt:
+
+```
+i = 1
+index = (3 + 1*5) % 10 = 8
+```
+
+### ✔ Third attempt:
+
+```
+i = 2
+index = (3 + 2*5) % 10 = 3 again → but modulo
+index = (3 + 2*5) % 10 = 3 → already used
+```
+
+### ✔ Fourth attempt:
+
+```
+i = 3
+index = (3 + 3*5) % 10 = 8 again
+```
+
+If table size is prime, this works well and avoids loops.
+
+---
+
+# ⭐ KEY UNDERSTANDING
+
+🎯 **Both hash functions are applied to the SAME element**
+🎯 **h1 gives starting position**
+🎯 **h2 gives jump step (how far to move on collision)**
+🎯 **You NEVER “mix” the hash codes**
+🎯 **You NEVER rehash the index**
+
+You just plug the values into the formula:
+
+```
+h1(key) + i*h2(key)
+```
+
+---
+
+# ⭐ SIMPLE REAL-LIFE EXPLANATION
+
+Think like this:
+
+### h1(key) = House number → first place you try to enter
+
+### h2(key) = Distance → how far you walk if the house is full
+
+You don’t calculate new house numbers.
+You just use:
+
+```
+original house + step * i
+```
+
+---
+
+# ⭐ INTERVIEW ANSWER (Write This)
+
+> “Double hashing uses two independent hash functions.
+> The first hash gives the initial index.
+> The second hash gives the step size for probing.
+> New positions are calculated as (h1 + i*h2) % size.
+> We never mix hash values; we only use them mathematically.”
+
+---
+
+If you want, I can show:
+
+✔ A complete example table with double hashing
+✔ A diagram explaining every step
+✔ Coding implementation of double hashing
+
+Just say: **“give example table”** or **“give diagram”**.
+
+
