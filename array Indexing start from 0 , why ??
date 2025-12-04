@@ -1,0 +1,58 @@
+
+---
+
+# ⭐ **In Java arrays:**
+
+### ✔ Indexing starts from **0**, not 1.
+
+So if your array is:
+
+```
+int[] arr = {11, 22, 33, 44};
+```
+
+Then:
+
+| Element | Index | We call it    |
+| ------- | ----- | ------------- |
+| 11      | 0     | **0th index** |
+| 22      | 1     | **1st index** |
+| 33      | 2     | **2nd index** |
+| 44      | 3     | **3rd index** |
+
+---
+
+# ⭐ Correct Terminology
+
+You should say:
+
+```
+11 is at 0th index
+22 is at 1st index
+33 is at 2nd index
+44 is at 3rd index
+```
+
+Not “1st index” for 11 — that would be wrong.
+
+---
+
+# ⭐ Why indexing starts from 0?
+
+Because arrays internally use **pointer arithmetic**:
+
+```
+address_of_element = base_address + (index * size_of_each_element)
+```
+
+If index started at 1, calculation would be inefficient.
+
+---
+
+# ⭐ Interview one-liner:
+
+> “Arrays in Java are zero-indexed.
+> The first element is at index 0, second at index 1, and so on.”
+
+---
+
