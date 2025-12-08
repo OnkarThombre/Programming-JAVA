@@ -1,3 +1,13 @@
+# ⭐ QUICK SUMMARY FOR YOU (Remember This)
+
+| Operation     | What it does                            |
+| ------------- | --------------------------------------- |
+| hasNext()     | checks if element exists AFTER cursor   |
+| next()        | moves cursor forward + returns element  |
+| hasPrevious() | checks if element exists BEFORE cursor  |
+| previous()    | moves cursor backward + returns element |
+
+
 Excellent, Onkar! 🔥
 Let’s answer this **VERY CLEARLY**, so your confusion ends forever.
 
