@@ -1,0 +1,71 @@
+
+class Address
+{
+	String city;
+	
+	public Address(String city)
+	{
+		this.city = city;
+	}
+}
+
+class Student implements Cloneable
+{
+	int age;
+	String name;
+	Address addr;
+	
+	Student()
+	{
+		this(00, "null" , new Address("Unknown"));
+	}
+	
+	Student(int age , String name , Address addre)
+	{
+		this.age = age;
+		this.name = name;
+		this.addr = addre;
+	}
+	
+	public String toString()
+	{
+		return "Name : " + name + ", Age :" + age + ", Address : " + addr; 
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+@Override
+	public Object clone() throws CloneNotSupportedException  {
+		
+		return super.clone();
+		
+	}
+}
+
+public class ShallowCopy_DeepCopy {
+  public static void main(String[] args) throws Exception { //throws CloneNotSupportedException due to this we are throwing from main otherwise this 
+						// calling clone method should be wrap in try catch block
+		Address adr = new Address("Pune");
+		Student std1 = new Student(1,"Onkar" ,adr);
+		
+		Student std2 = (Student) std1.clone();
+		
+		System.out.println("S1 address =: " + std1.addr.city + "\nstd2 address=: "+std2.addr.city);
+		
+		std1.addr.city = "Mumbai";
+		System.out.println("S1 address =: " + std1.addr.city + "\nstd2 address=: "+std2.addr.city);
+	}
+}
