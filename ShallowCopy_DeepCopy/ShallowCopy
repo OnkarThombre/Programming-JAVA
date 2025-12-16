@@ -55,7 +55,7 @@ class Student implements Cloneable
 	}
 }
 
-public class ShallowCopy_DeepCopy {
+public class ShallowCopy {
   public static void main(String[] args) throws Exception { //throws CloneNotSupportedException due to this we are throwing from main otherwise this 
 						// calling clone method should be wrap in try catch block
 		Address adr = new Address("Pune");
