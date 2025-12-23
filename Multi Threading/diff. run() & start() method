@@ -1,0 +1,230 @@
+
+Below are **clear, complete, interview-ready answers** to **ALL the questions** step by step.
+Read once carefully — this will **lock your multithreading basics forever**.
+
+---
+
+# 1️⃣ `start()` vs `run()` (MOST IMPORTANT INTERVIEW QUESTION)
+
+## ✅ `start()` method
+
+* Creates a **new thread**
+* JVM allocates **separate call stack**
+* Internally calls `run()`
+* **True multithreading**
+
+```java
+Demo t1 = new Demo();
+t1.start();
+```
+
+✔ Runs concurrently
+✔ New thread created
+
+---
+
+## ❌ `run()` method
+
+* **No new thread**
+* Executes like a **normal method**
+* Runs on **main thread’s call stack**
+* **No multithreading**
+
+```java
+Demo t1 = new Demo();
+t1.run();
+```
+
+❌ No concurrency
+❌ Single-threaded execution
+
+---
+
+### 🔥 Interview One-Line Answer
+
+> `start()` creates a new thread and calls `run()` internally, whereas calling `run()` directly does not create a new thread and executes like a normal method.
+
+---
+
+# 2️⃣ Thread Life Cycle (WITH STATES)
+
+Java thread has **5 main states**:
+
+```
+NEW → RUNNABLE → RUNNING → TERMINATED
+            ↘
+           BLOCKED / WAITING
+```
+
+---
+
+## Explanation of Each State
+
+### 🟡 NEW
+
+```java
+Demo t = new Demo(); // Thread object created
+```
+
+* Thread is created
+* Not started yet
+
+---
+
+### 🟢 RUNNABLE
+
+```java
+t.start();
+```
+
+* Thread is **ready to run**
+* Waiting for CPU from scheduler
+
+---
+
+### 🔵 RUNNING
+
+* JVM scheduler gives CPU
+* `run()` method executes
+
+---
+
+### 🔴 BLOCKED / WAITING
+
+* Thread waits for:
+
+  * lock
+  * I/O
+  * `sleep()`
+  * `join()`
+  * `wait()`
+
+---
+
+### ⚫ TERMINATED (DEAD)
+
+* `run()` method finishes
+* Thread cannot be restarted
+
+---
+
+### 🔥 Interview One-Line Answer
+
+> A thread goes through NEW, RUNNABLE, RUNNING, BLOCKED/WAITING, and TERMINATED states during its lifecycle.
+
+---
+
+# 3️⃣ Why calling `run()` directly is NOT multithreading
+
+### Code Example
+
+```java
+Demo t1 = new Demo();
+t1.run();
+System.out.println("end");
+```
+
+### Output (Always same order)
+
+```
+From Demo run
+end
+```
+
+### Why?
+
+* `run()` executes on **main thread**
+* No new call stack
+* No parallel execution
+
+---
+
+### Compare with `start()`
+
+```java
+t1.start();
+System.out.println("end");
+```
+
+Output may be:
+
+```
+end
+From Demo run
+```
+
+OR
+
+```
+From Demo run
+end
+```
+
+✔ Because threads run **independently**
+
+---
+
+### 🔥 Interview Answer
+
+> Calling `run()` directly does not start a new thread; it executes on the current thread, so multithreading does not occur.
+
+---
+
+# 4️⃣ Real-Life Analogy (BEST FOR MEMORY)
+
+### 👨‍🍳 Chef Example
+
+#### `run()` → Single Chef
+
+* You cook rice
+* Then you cook dal
+* Then you cook sabji
+  ➡️ One after another
+
+#### `start()` → Multiple Chefs
+
+* Chef 1 cooks rice
+* Chef 2 cooks dal
+* Chef 3 cooks sabji
+  ➡️ Work happens **in parallel**
+
+---
+
+### 🧠 Simple Rule
+
+> `run()` = do work yourself
+> `start()` = assign work to a new worker
+
+---
+
+# 🔑 FINAL SUMMARY (INTERVIEW REVISION)
+
+| Concept        | Key Point          |
+| -------------- | ------------------ |
+| `start()`      | Creates new thread |
+| `run()`        | Normal method      |
+| Thread order   | NOT guaranteed     |
+| Scheduler      | JVM + OS decides   |
+| Multithreading | Needs `start()`    |
+| Thread restart | ❌ Not allowed      |
+
+---
+
+## 🎯 If interviewer asks:
+
+**“Why did output print `end` before `run()`?”**
+
+### Perfect Answer:
+
+> Because `start()` creates a new thread and the main thread continues execution. The JVM scheduler decides which thread runs first, so execution order is not guaranteed.
+
+---
+
+If you want next, I can give you:
+
+* **Interview Q&A on multithreading**
+* **Thread vs Runnable (why Runnable is preferred)**
+* **Synchronization explained simply**
+* **wait(), notify(), notifyAll()**
+
+Just tell me 👍
